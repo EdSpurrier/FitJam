@@ -12,6 +12,7 @@ import * as faceLandmarksDetection from '@tensorflow-models/face-landmarks-detec
 import * as faceMesh from '@mediapipe/face_mesh';
 import '@tensorflow-models/face-detection';
 import { LABEL_TO_COLOR } from '@/lib/utils';
+import { FaceDetector } from '@tensorflow-models/face-detection';
 
 
 tfjsWasm.setWasmPaths(
@@ -30,8 +31,7 @@ async function setupDetector() {
 }
 
 
-async function setupVideo() {
-  const video = document.getElementById('video') as HTMLVideoElement;
+async function setupVideo(video: HTMLVideoElement | undefined) {
   const stream = await window.navigator.mediaDevices.getUserMedia({ video: true });
 
   if (!video) {
@@ -53,8 +53,7 @@ async function setupVideo() {
   return video;
 }
 
-async function setupCanvas(video: { width: any; height: any; } | undefined) {
-  const canvas = document.getElementById('canvas') as HTMLCanvasElement;
+async function setupCanvas(canvas: HTMLCanvasElement | undefined, video: { width: any; height: any; } | undefined) {
 
   if (!canvas || !video) {
     return;
@@ -77,36 +76,48 @@ const FaceLandmarksDetections = ({
   children,
   className,
 }: FaceLandmarksDetectionsProps) => {
-  const detectorRef = useRef();
-  const videoRef = useRef();
-  const [ctx, setCtx] = useState();
+
+  const canvasRef = useRef<HTMLCanvasElement | null>(null)
+  const videoRef = useRef<HTMLVideoElement | null>(null)
+  
   const contours = faceLandmarksDetection.util.getKeypointIndexByContour(faceLandmarksDetection.SupportedModels.MediaPipeFaceMesh);
+  
+  
+  const [ctx, setCtx] = useState<CanvasRenderingContext2D | null>(null);
+  const [video, setVideo] = useState<HTMLVideoElement | null>(null);
+  const [detector, setDetector] = useState<faceLandmarksDetection.FaceLandmarksDetector | null>();
+
 
   useEffect(() => {
     async function initialize() {
-      if (!videoRef.current) {
+      if (!videoRef.current || !canvasRef.current) {
         return;
       }
-      videoRef.current = await setupVideo();
-      const ctx = await setupCanvas(videoRef.current);
-      detectorRef.current = await setupDetector();
 
-      setCtx(ctx);
+      let videoSetup = await setupVideo(videoRef.current) as HTMLVideoElement;
+      let ctxSetup = await setupCanvas(canvasRef.current, videoRef.current) as CanvasRenderingContext2D;
+      let detectorSetup = await setupDetector() as faceLandmarksDetection.FaceLandmarksDetector;
+
+      setVideo(videoSetup);
+      setDetector(detectorSetup);
+      setCtx(ctxSetup);
     }
 
     initialize();
   }, []);
 
-  useAnimationFrame(async delta => {
-    const faces = await detectorRef.current.estimateFaces(videoRef.current);
+  useAnimationFrame(async () => {
+    if (!detector || !video || !ctx) {
+      return;
+    }
 
-    ctx.clearRect(0, 0, videoRef.current.videoWidth, videoRef.current.videoHeight);
-    ctx.drawImage(videoRef.current, 0, 0);
+    const faces = await detector.estimateFaces(video);
+
+    ctx.clearRect(0, 0, video.videoWidth, video.videoHeight);
+    ctx.drawImage(video, 0, 0);
     drawFaces(faces, ctx, contours);
 
-
-
-  }, !!(detectorRef.current && videoRef.current && ctx))
+  }, !!(detector && video && ctx))
 
   return (
     <div
@@ -116,6 +127,7 @@ const FaceLandmarksDetections = ({
       )}
     >
       <canvas
+        ref={canvasRef}
         style={{
           transform: "scaleX(-1)",
           zIndex: 1,
@@ -126,6 +138,7 @@ const FaceLandmarksDetections = ({
         id="canvas">
       </canvas>
       <video
+        ref={videoRef}
         style={{
           visibility: "hidden",
           transform: "scaleX(-1)",
