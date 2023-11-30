@@ -20,10 +20,10 @@ const FpsCounter = ({
   }, animate);
   
   return (
-      <>
+      <div className={clsx(styles.root, className)}>
           <span>{fps} FPS, {count}</span>
           <button onClick={() => setAnimate(!animate)}>Toggle</button>
-      </>
+      </div>
   )
 }
 

@@ -22,7 +22,8 @@ export default function FaceDetectionPage() {
 					<Link style={{ fontWeight: "bold" }} href={'/'}>Home</Link> / Face Landmark Detection 🤓
 				</h2>
 				<code style={{ marginBottom: '1rem' }}>Work in progress...</code>
-				<FaceLandmarksDetection></FaceLandmarksDetection>
+				<FaceLandmarksDetection>
+				</FaceLandmarksDetection>
 
 			</div>
 		</div>
