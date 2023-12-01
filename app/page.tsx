@@ -9,26 +9,27 @@ import { GithubIcon } from "@/components/icons";
 export default function Home() {
 	return (
 		<section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">
-			<div className="inline-block max-w-lg text-center justify-center">
-				<h1 className={title()}>Make&nbsp;</h1>
-				<h1 className={title({ color: "violet" })}>beautiful&nbsp;</h1>
+			<div className="justify-center inline-block max-w-lg text-center">
+				<h1 className={title()}>Inspire&nbsp;</h1>
+				<h1 className={title({ color: "violet" })}>Imagine&nbsp;</h1>
+				<h1 className={title({ color: "yellow" })}>Create&nbsp;</h1>
 				<br />
 				<h1 className={title()}>
-					websites regardless of your design experience.
+					Explore new concepts and expand your mind.
 				</h1>
 				<h2 className={subtitle({ class: "mt-4" })}>
-					Beautiful, fast and modern React UI library.
+					Inspire creativity!
 				</h2>
 			</div>
 
 			<div className="flex gap-3">
-				<Link
+{/* 				<Link
 					isExternal
 					href={siteConfig.links.docs}
 					className={buttonStyles({ color: "primary", radius: "full", variant: "shadow" })}
 				>
-					Documentation
-				</Link>
+					EdSpurrier.com
+				</Link> */}
 				<Link
 					isExternal
 					className={buttonStyles({ variant: "bordered", radius: "full" })}
@@ -42,7 +43,7 @@ export default function Home() {
 			<div className="mt-8">
 				<Snippet hideSymbol hideCopyButton variant="flat">
 					<span>
-						Get started by editing <Code color="primary">app/page.tsx</Code>
+						Be creative <Code color="warning">imagine/explore.reality</Code>
 					</span>
 				</Snippet>
 			</div>

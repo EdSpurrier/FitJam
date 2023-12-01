@@ -16,50 +16,19 @@ export const siteConfig = {
 			label: "HandPose",
 			href: "/HandPose",
 		},
-		{
-			label: "About",
-			href: "/about",
-		}
 	],
 	navMenuItems: [
 		{
-			label: "Profile",
-			href: "/profile",
+			label: "FaceDetection",
+			href: "/FaceDetection",
 		},
 		{
-			label: "Dashboard",
-			href: "/dashboard",
-		},
-		{
-			label: "Projects",
-			href: "/projects",
-		},
-		{
-			label: "Team",
-			href: "/team",
-		},
-		{
-			label: "Calendar",
-			href: "/calendar",
-		},
-		{
-			label: "Settings",
-			href: "/settings",
-		},
-		{
-			label: "Help & Feedback",
-			href: "/help-feedback",
-		},
-		{
-			label: "Logout",
-			href: "/logout",
+			label: "HandPose",
+			href: "/HandPose",
 		},
 	],
 	links: {
 		github: "https://github.com/EdSpurrier",
-		twitter: "https://twitter.com/getnextui",
-		docs: "https://nextui.org",
-		discord: "https://discord.gg/9b6yyZKmH4",
-		sponsor: "https://patreon.com/jrgarciadev"
+		linkedin: "https://www.linkedin.com/in/ed-spurrier-68123b55/",
 	},
 };
