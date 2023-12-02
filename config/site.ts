@@ -16,16 +16,13 @@ export const siteConfig = {
 			label: "HandPose",
 			href: "/HandPose",
 		},
+		{
+			label: "KineXusHandPose",
+			href: "/KineXusHandPose",
+		},
 	],
 	navMenuItems: [
-		{
-			label: "FaceDetection",
-			href: "/FaceDetection",
-		},
-		{
-			label: "HandPose",
-			href: "/HandPose",
-		},
+
 	],
 	links: {
 		github: "https://github.com/EdSpurrier",
