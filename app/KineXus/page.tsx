@@ -1,5 +1,5 @@
+import KineXus from "@/components/KineXus";
 import { title } from "@/components/primitives";
-import { KineXus } from "kinexus-engine";
 
 export default function KineXusPage() {
 	return (
