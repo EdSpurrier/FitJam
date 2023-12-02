@@ -5,8 +5,8 @@ export const siteConfig = {
 	description: "Makin' Sick Shit!",
 	navItems: [
 		{
-			label: "Home",
-			href: "/",
+			label: "KineXus",
+			href: "/KineXus",
 		},
 		{
 			label: "FaceDetection",

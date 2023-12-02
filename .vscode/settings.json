@@ -1,4 +1,13 @@
 {
   "typescript.tsdk": "node_modules/typescript/lib",
-  "editor.inlineSuggest.showToolbar": "onHover"
+  "editor.inlineSuggest.showToolbar": "onHover",
+  "files.exclude": {
+    ".next": false,
+    ".vscode": false,
+    "node_modules": false,
+    "yarn-error.log": false,
+    "yarn.lock": false,
+    "LICENSE": false,
+    "next-env.d.ts": false
+  }
 }

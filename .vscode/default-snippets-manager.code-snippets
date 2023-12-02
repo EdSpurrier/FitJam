@@ -1,0 +1,10 @@
+{
+	"className": {
+		"prefix": "className",
+		"description": "className",
+		"scope": "typescriptreact",
+		"body": [
+			"className={clsx('fill-inherit')}"
+		]
+	}
+}
