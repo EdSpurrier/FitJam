@@ -1,3 +1,12 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+    --top-nav-height: 3rem;
+}
+
+
+.h-screen {
+    height: calc( 100vh - var(--top-nav-height) );
+}
