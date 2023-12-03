@@ -50,7 +50,13 @@ const KineXusHandPose = ({
     var scale = 0.9;
 
 
-
+    if (!circle) {
+      console.log('MAKING CIRCLE');
+      var mouseCircle = Bodies.circle( mousePosition.x, mousePosition.y, 20); // x, y, radius
+      Body.setStatic(mouseCircle, true)
+      World.add(engine.current.world, [mouseCircle]);
+      setCircle(mouseCircle)
+    }
 
     
     Engine.run(engine.current)
@@ -95,7 +101,7 @@ const KineXusHandPose = ({
 
     setMousePosition({ x: e.clientX, y: e.clientY });
 
-    if (!circle) {
+/*     if (!circle) {
       console.log('MAKING CIRCLE');
       var mouseCircle = Bodies.circle( mousePosition.x, mousePosition.y, 50); // x, y, radius
       Body.setStatic(mouseCircle, true)
@@ -104,24 +110,50 @@ const KineXusHandPose = ({
     }
 
     if (!circle) return;
-    Body.setPosition(circle, { x: mousePosition.x, y: mousePosition.y });
+    Body.setPosition(circle, { x: mousePosition.x, y: mousePosition.y }); */
 
   }
 
-/*   useEffect(() => {
-    if (!circle) {
-      console.log('MAKING CIRCLE');
-      var mouseCircle = Bodies.circle( mousePosition.x, mousePosition.y, 20); // x, y, radius
-      Body.setStatic(mouseCircle, true)
-      World.add(engine.current.world, [mouseCircle]);
-      setCircle(mouseCircle)
-    }
+   useEffect(() => {
+    
 
     if (!circle) return;
     Body.setPosition(circle, { x: mousePosition.x, y: mousePosition.y });
 
 
-  }, [circle, mousePosition]) */
+  }, [circle, mousePosition]) 
+
+
+
+
+
+
+  const init = () => {
+      
+  }
+
+  const start = () => {
+
+  }
+
+  const stop = () => {
+      
+  }
+
+  const update = () => {
+    if (!circle) return;
+    Body.setPosition(circle, { x: mousePosition.x, y: mousePosition.y });
+  }
+  
+
+
+
+
+
+
+
+
+
 
 /* 
   // Update Mouse position
